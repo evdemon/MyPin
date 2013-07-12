@@ -13,12 +13,11 @@
 		<%= render 'layouts/header' %>
 
 		<div class="container">
+			<% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
+      <% end %>
    		<div class="row">
-  			<div class="span2">
-					<h4>Navigation Bar</h4>
-  			</div>
- 
-  			<div class="span10">
+  			<div class="span12">
 		 			<%= yield %>
 				</div>
 			</div>
