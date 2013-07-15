@@ -27,6 +27,7 @@ class PinsController < ApplicationController
   # GET /pins/new
   # GET /pins/new.json
   def new
+    # @pin = Pin.new
     @pin = current_user.pins.new
 
     respond_to do |format|
@@ -43,7 +44,8 @@ class PinsController < ApplicationController
   # POST /pins
   # POST /pins.json
   def create
-    @pin = current_user.pins.new(params[:id])
+    # @pin = Pin.new(params[:id])
+    @pin = current_user.pins.new(params[:pin])
 
     respond_to do |format|
       if @pin.save
@@ -59,7 +61,7 @@ class PinsController < ApplicationController
   # PUT /pins/1
   # PUT /pins/1.json
   def update
-    @pin = Pin.find(params[:id])
+    @pin = current_user.pins.find(params[:id])
 
     respond_to do |format|
       if @pin.update_attributes(params[:pin])
