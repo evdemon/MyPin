@@ -5,7 +5,9 @@ class PinsController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
 
   def index
-    @pins = Pin.order("created_at desc") # Can replace with current_user.pins.all if we don't want users to be able to view other users' pins.
+    
+    # Can replace with current_user.pins.all if we don't want users to be able to view other users' pins.
+    @pins = @pins = Pin.order("created_at desc").page(params[:page]).per_page(10) 
 
     respond_to do |format|
       format.html # index.html.erb
